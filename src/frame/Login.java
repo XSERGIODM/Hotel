@@ -128,7 +128,14 @@ public class Login extends JFrame {
         btnIngresar.setForeground(Color.WHITE);
         btnIngresar.setBackground(new Color(0x0C2269));
         btnIngresar.setBorder(BorderFactory.createLineBorder(new Color(0x2B2B2D)));
-        btnIngresar.addActionListener(oyente);
+        btnIngresar.addActionListener(x -> {
+            if (txtUsuario.getText().equals("Usuario") || txtPassword.getText().equals("Password")) {
+                JOptionPane.showMessageDialog(null, "Ingrese los datos");
+            } else {
+                new Lobby();
+                dispose();
+            }
+        });
         btnIngresar.addMouseListener(oyenteMouse);
         paneles.get(0).add(btnIngresar);
         //------------------------------------------
@@ -136,19 +143,6 @@ public class Login extends JFrame {
     //------------------------------------------------------------------------------------------------------------------
 
     // Eventos
-    private ActionListener oyente = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnIngresar) {
-                if (txtUsuario.getText().equals("Usuario") || txtPassword.getText().equals("Password")) {
-                    JOptionPane.showMessageDialog(null, "Ingrese los datos");
-                } else {
-                    new Lobby();
-                    dispose();
-                }
-            }
-        }
-    };
     private MouseAdapter oyenteMouse = new MouseAdapter() {
         @Override
         public void mouseClicked(java.awt.event.MouseEvent e) {
